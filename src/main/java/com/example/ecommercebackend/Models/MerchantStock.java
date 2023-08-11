@@ -11,17 +11,17 @@ import org.hibernate.validator.constraints.UUID;
 public class MerchantStock {
 
     @NotEmpty(message = "Product ID cannot be empty and must be set as a valid UUID.")
-    @UUID(message = "Please enter a valid UUID") //// we only accept valid generated UUID.
+    @UUID(message = "Please enter a valid UUID for ID") //// we only accept valid generated UUID.
     private String id;
 
 
     @NotEmpty(message = "Product ID cannot be empty and must be set as a valid UUID.")
-    @UUID(message = "Please enter a valid UUID") //// we only accept valid generated UUID.
+    @UUID(message = "Please enter a valid UUID for product ID") //// we only accept valid generated UUID.
     private String productId;
 
 
     @NotEmpty(message = "Merchant ID cannot be empty and must be set as a valid UUID.")
-    @UUID(message = "Please enter a valid UUID") //// we only accept valid generated UUID.
+    @UUID(message = "Please enter a valid UUID for merchant ID") //// we only accept valid generated UUID.
     private String merchantId;
 
 
