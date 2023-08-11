@@ -1,8 +1,8 @@
 package com.example.ecommercebackend.Controllers;
 
 import com.example.ecommercebackend.ApiReponse.ApiResponse;
-import com.example.ecommercebackend.Models.Category;
-import com.example.ecommercebackend.Services.CategoryService;
+import com.example.ecommercebackend.Models.Merchant;
+import com.example.ecommercebackend.Services.MerchantService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,52 +13,51 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.Objects;
 
-
 @RestController
-@RequestMapping("api/v1/category")
+@RequestMapping("api/v1/merchants")
 @RequiredArgsConstructor
-public class CategoryController {
+public class MerchantController {
 
-    private final CategoryService categoryService;
+    private final MerchantService merchantService;
 
     @GetMapping("/get")
-    public ResponseEntity<ApiResponse<Collection<Category>>> getAllProducts() {
-        return categoryService.getAllCategories();
+    public ResponseEntity<ApiResponse<Collection<Merchant>>> getAllMerchants() {
+        return merchantService.getAllMerchants();
     }
 
-
     @PostMapping("/add")
-    public ResponseEntity<ApiResponse<String>> addCategory(@RequestBody @Valid Category newCategory, Errors errors) {
+    public ResponseEntity<ApiResponse<String>> addMerchant(@RequestBody @Valid Merchant newMerchant, Errors errors) {
         if (errors.hasErrors()) {
             String errMessage = Objects.requireNonNull(errors.getFieldError()).getDefaultMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(errMessage));
         }
-        return categoryService.addCategory(newCategory);
+
+        return merchantService.addMerchant(newMerchant);
     }
 
     @PutMapping("/update/{ID}")
-    public ResponseEntity<ApiResponse<String>> updateCategory(@PathVariable Integer ID, @RequestBody @Valid Category categoryUpdate, Errors errors) {
+    public ResponseEntity<ApiResponse<String>> updateMerchant(@PathVariable String ID, @RequestBody @Valid Merchant merchantUpdate, Errors errors) {
 
         if (errors.hasErrors()) {
             String errMessage = Objects.requireNonNull(errors.getFieldError()).getDefaultMessage();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse<>(errMessage));
         }
 
-        return categoryService.updateCategory(ID, categoryUpdate);
+        return merchantService.updateMerchant(ID, merchantUpdate);
     }
 
     @DeleteMapping("/delete/{ID}")
-    public ResponseEntity<ApiResponse<String>> deleteCategory(@PathVariable Integer ID) {
+    public ResponseEntity<ApiResponse<String>> deleteMerchant(@PathVariable String ID) {
 
-        return categoryService.deleteCategory(ID);
+        return merchantService.deleteMerchant(ID);
     }
 
 
     ///// extra credit
-
     @GetMapping("/sorted")
-    public ResponseEntity<ApiResponse<Collection<Category>>> getSortedCategories() {
+    public ResponseEntity<ApiResponse<Collection<Merchant>>> getSortedCategories() {
 
-        return categoryService.getSortedCategories();
+        return merchantService.getSortedCategories();
     }
 }
+

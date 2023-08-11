@@ -23,7 +23,7 @@ public class ProductService {
 
     ///// minimum requirements
     public ResponseEntity<ApiResponse<Collection<Product>>> getAllProducts() {
-        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<Collection<Product>>(productsDB.values()));
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(productsDB.values()));
     }
 
     public ResponseEntity<ApiResponse<String>> addProduct(Product newProduct) {
@@ -84,5 +84,10 @@ public class ProductService {
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<Collection<Product>>(productsDB.values().stream()
                 .filter(product -> Objects.equals(id, product.getCategoryID()))
                 .toList()));
+    }
+
+    //// for extra in merchant stock , we get a snapshot so we guarantee the data of the DB are only mutable here.
+    public HashMap<String, Product> dbSnapshot() {
+        return productsDB;
     }
 }
