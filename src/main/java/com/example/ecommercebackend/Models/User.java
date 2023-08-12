@@ -20,7 +20,7 @@ public class User {
 
     @NotEmpty(message = "Password cannot be empty")
     @Size(min = 7, message = "Password has to be at least 7 characters")
-    @Pattern(regexp = "(?=[0-9])", message = "Password must contain characters and digitss")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d\\s]{1,}$", message = "Password must contain characters and digits")
     private String password;
 
     @NotEmpty(message = "Email cannot be empty")
@@ -34,6 +34,6 @@ public class User {
 
     @NotNull(message = "Balance cannot be left empty")
     @PositiveOrZero ///// I put or Zero instead of only Positive because new user could have 0 in their account balance.
-    private Integer balance;
+    private Double balance;
 
 }

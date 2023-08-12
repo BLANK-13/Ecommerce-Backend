@@ -55,9 +55,9 @@ public class MerchantController {
 
     ///// extra credit
     @GetMapping("/sorted")
-    public ResponseEntity<ApiResponse<Collection<Merchant>>> getSortedCategories() {
+    public ResponseEntity<ApiResponse<Collection<Merchant>>> getSortedMerchants() {
 
-        return merchantService.getSortedCategories();
+        return merchantService.getSortedMerchants();
     }
 }
 

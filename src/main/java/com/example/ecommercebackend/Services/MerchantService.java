@@ -64,7 +64,7 @@ public class MerchantService {
     }
 
 
-    public ResponseEntity<ApiResponse<Collection<Merchant>>> getSortedCategories() {
+    public ResponseEntity<ApiResponse<Collection<Merchant>>> getSortedMerchants() {
         List<Merchant> sortedCategories = new ArrayList<>(merchantsDB.values());
 
         sortedCategories.sort(Comparator.comparing(Merchant::getName, String.CASE_INSENSITIVE_ORDER));

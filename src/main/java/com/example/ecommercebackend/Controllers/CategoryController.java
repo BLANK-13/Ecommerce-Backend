@@ -22,7 +22,7 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/get")
-    public ResponseEntity<ApiResponse<Collection<Category>>> getAllProducts() {
+    public ResponseEntity<ApiResponse<Collection<Category>>> getAllCategories() {
         return categoryService.getAllCategories();
     }
 

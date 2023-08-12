@@ -53,17 +53,17 @@ public class MerchantStockController {
 
         return merchantStockService.deleteMerchantStock(ID);
     }
+    ///// 11.
 
-
-    //// extra credit
-
-    //// this put endpoint is for easy stock adding just /stockId/amount you want to add to this stock.
+    //// I chose only accepting merchant stock ID and then can access productID & merchantID from it more convenient this way.
     @PutMapping("/add-stock/{ID}/{amount}")
     public ResponseEntity<ApiResponse<String>> addToStock(@PathVariable String ID, @PathVariable Integer amount) {
 
         return merchantStockService.addToStock(ID, amount);
     }
 
+
+    //// extra credit
     @GetMapping("/my-stock/{ID}")
     public ResponseEntity<ApiResponse> getMyStock(@PathVariable String ID) {
 
