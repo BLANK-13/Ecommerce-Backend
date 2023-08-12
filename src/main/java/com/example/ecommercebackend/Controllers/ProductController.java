@@ -57,11 +57,15 @@ public class ProductController {
 
     ///// Extra credit.
 
+
+    //// search a product by name a get a list of all matching products
     @GetMapping("/search/{searchName}")
     public ResponseEntity<ApiResponse> searchProductsByName(@PathVariable String searchName) {
 
         return productService.searchProductsByName(searchName);
     }
+
+    //// get all products in x category
     @GetMapping("/get-category/{id}")
     public ResponseEntity<ApiResponse> getProductsById(@PathVariable Integer id) {
 

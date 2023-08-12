@@ -81,7 +81,6 @@ public class CategoryService {
     }
 
 
-
     //// extra credit
 
     //// for extra in the product , we get a snapshot so we guarantee the data of the DB are only mutable here.
@@ -93,13 +92,11 @@ public class CategoryService {
     public ResponseEntity<ApiResponse<Collection<Category>>> getSortedCategories() {
         List<Category> sortedCategories = new ArrayList<>(categoryDB.values());
 
-        sortedCategories.sort(Comparator.comparing(Category::getName,String.CASE_INSENSITIVE_ORDER));
+        sortedCategories.sort(Comparator.comparing(Category::getName, String.CASE_INSENSITIVE_ORDER));
 
 
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(sortedCategories));
     }
-
-
 
 
 }

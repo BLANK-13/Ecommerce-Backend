@@ -86,7 +86,6 @@ public class ProductService {
                 .toList()));
     }
 
-    //// for extra in merchant stock , we get a snapshot so we guarantee the data of the DB are only mutable here.
     public HashMap<String, Product> dbSnapshot() {
         return productsDB;
     }

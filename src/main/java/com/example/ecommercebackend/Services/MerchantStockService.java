@@ -23,7 +23,7 @@ public class MerchantStockService {
 
 
     //// this will be our virtual db that contains a unique UUID for MerchantStock as key and a record of StockItemInto that contains all the items we need as a value.
-    private final HashMap<String, MerchantStock> stockDB = new HashMap<>();
+    protected final HashMap<String, MerchantStock> stockDB = new HashMap<>();
 
 
     public ResponseEntity<ApiResponse<Collection<MerchantStock>>> getAllMerchantStock() {
@@ -75,7 +75,6 @@ public class MerchantStockService {
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>("Merchant stock deleted successfully !"));
     }
 
-    //// extra credit
 
     public ResponseEntity<ApiResponse<String>> addToStock(String queryID, Integer amountToAdd) {
 
@@ -91,6 +90,7 @@ public class MerchantStockService {
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(amountToAdd + " of " + productService.dbSnapshot().get(queryID).getName() + " product successfully added to stock !"));
     }
 
+    //// extra credit
     public ResponseEntity<ApiResponse> getMyStock(String queryID) {
 
         if (!stockDB.containsKey(queryID)) {
@@ -109,5 +109,9 @@ public class MerchantStockService {
             return "invalid merchant ID, it doesn't exist in the merchants database.";
         }
         return null; //// if we reach this point then it's valid that means the error message is null and both IDs are valid and exist in our DBs.
+    }
+
+    public HashMap<String, MerchantStock> dbSnapshot() {
+        return stockDB;
     }
 }
